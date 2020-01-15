@@ -1,0 +1,43 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Generic ITN style
+\usepackage[ACRONYM,draft]{itn}
+
+% Common between all documents
+\input{common}
+
+\begin{document}
+
+\itnpage{START PAGE}
+{\small\tableofcontents} % Just for master.tex
+\note{Table of Contents should be one page}
+
+% Part B1 sections
+\include{participants}
+\include{excellence}
+\include{impact}
+\include{quality}
+
+% Part B2 sections
+\include{eid}
+\include{organisations}
+\include{ethics}
+\include{letters}
+
+\itnpage{END PAGE}
+
+\appendix
+
+% Can be handy, but remove for the submission
+%\include{notes}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% End:

@@ -1,0 +1,35 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Generic ITN style
+\usepackage[ACRONYM]{itn}
+
+% Common between all documents
+\input{common}
+
+\begin{document}
+
+% These depend on PartB1
+\setcounter{section}{3}
+\setcounter{page}{34}
+
+% \itnpage{START PAGE}
+\tableofcontents
+
+% Part B2 sections
+\include{eid}
+\include{organisations}
+\include{ethics}
+\include{letters}
+
+\itnpage{END PAGE}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% End:

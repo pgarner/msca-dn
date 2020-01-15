@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Generic ITN style
+\usepackage[ACRONYM]{itn}
+
+% Common between all documents
+\input{common}
+
+\begin{document}
+
+\itnpage{START PAGE}
+\tableofcontents
+\note{Table of Contents should be one page, but bear in mind it's across two documents}
+
+% Part B1 sections
+\include{participants}
+\include{excellence}
+\include{impact}
+\include{quality}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% End:

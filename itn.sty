@@ -1,0 +1,165 @@
+%%
+%% MSC ITN Style
+%%
+%% Phil Garner, October 2019
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{itn}[2020/01/15 MSC ITN Proposal]
+
+% Default values when options are not specified
+\usepackage{xspace}
+\newcommand{\project}{\textsf{ProjectName}\xspace}
+\newcommand{\note}[1]{}
+\newcommand{\todo}[2]{}
+
+% Options.  Unknown options assumed to be project name
+\newcommand*{\getproject}[1]{%
+    \renewcommand{\project}{\textsf{#1}\xspace}%
+}
+\DeclareOption*{\expandafter\getproject\expandafter{\CurrentOption}}
+\DeclareOption{draft}{
+    \renewcommand{\note}[1]{{\color{blue}\textit{#1}}}
+    \renewcommand{\todo}[2]{\par
+        {\color{red}{\textbf{[#1] #2}}}%
+        \addcontentsline{toc}{subsubsection}{{\color{red}{[#1] #2}}}
+    }
+}
+\ProcessOptions\relax
+
+% Minimum font size should be 11pt in the document header
+\usepackage[a4paper,margin=15mm]{geometry}
+\usepackage{parskip}
+\usepackage{times}
+\usepackage{paralist} % For compactenum
+\usepackage{enumitem} % To change the enumeration label
+
+% We need fancy headers and footers
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\chead{\project\ - ETN}
+\lhead{}
+\rhead{}
+\cfoot{}
+\rfoot{Part B - Page \thepage\ of \pageref{LastPage}}
+\setlength{\headheight}{15.2pt}
+
+% TOC needs to fit on one page
+\setcounter{tocdepth}{3}
+
+% The \checkmark is in here
+\usepackage{amssymb}
+
+% For tables; these are not floats, they are more just tabular environments.
+\usepackage{array}
+\usepackage[table]{xcolor}
+\newenvironment{itntable}[2][\footnotesize]{%
+  \begin{center}
+    % With [11pt] in the documentstyle, \scriptsize is 8pt
+    % \footnotesize is 9pt, which is readable.  If a table is too big then put [\scriptsize] (i.e., 8pt) as optional argument
+    #1 % Set the right size (and font maybe)
+    \newcommand{\ra}{\raggedright\arraybackslash}
+    \begin{tabular}{#2}
+}{%
+    \end{tabular}
+  \end{center}
+}
+
+% Using a section command here prevents the widow / orphan thing with homemade command
+\newcommand{\itncaption}[1]{\subsubsection*{#1}}
+
+% Low level sectioning.  Could be \paragraph if space is short
+\newcommand{\itnsection}[1]{\subsubsection*{#1}}
+
+% Tables have coloured headings.  This ensures some consistency
+\colorlet{itncolor}{olive!30}
+\newcommand{\colorrow}{\rowcolor{itncolor}}
+\newcommand{\colorcell}{\cellcolor{itncolor}}
+
+% Work package tables need to look the same
+\newcounter{wp}
+\newcounter{task}[wp]
+\newenvironment{itnwp}[3]{%
+    \refstepcounter{wp}
+    \begin{itntable}{|>{\ra}p{30mm}|>{\ra}p{140mm}|}
+        \hline
+        \colorcell\textbf{WP Number} &
+        \parbox{140mm}{WP\arabic{wp}\hfill\textbf{#1}} \\
+        \hline
+        \colorcell\textbf{WP Title} & #2 \\
+        \hline
+        \colorcell\textbf{Lead Beneficiary} & #3 \\
+        \hline
+}{
+        \hline
+    \end{itntable}
+}
+\newcommand{\itnwppar}[2]{\multicolumn{2}{|p{175mm}|}{%
+    \textbf{#1:} #2}}
+\newcommand{\itnwptask}[2]{%
+    \itnwppar{\textit{\refstepcounter{task}Task \arabic{wp}.\arabic{task}. #1}}{#2}}
+
+% Similar for research projects
+\newenvironment{itnrp}{%
+    \begin{itntable}{|c|c|c|c|c|c|}
+        \hline
+        \colorrow
+        \textbf{Fellow} &
+        \textbf{Host institution} &
+        \textbf{PhD enrolment} &
+        \textbf{Start date} &
+        \textbf{Duration} &
+        \textbf{Deliverables} \\
+        \hline
+}{
+        \hline
+    \end{itntable}
+}
+\newcommand{\itnrppar}[2]{\multicolumn{6}{|p{175mm}|}{%
+    \textbf{#1:} #2}}
+
+% Citations are in footnotes
+\usepackage[style=verbose]{biblatex}
+\let\cite\footcite
+
+% Start and end pages
+\newcommand{\itnpage}[1]{%
+    \begin{center}
+    \LARGE
+    \textbf{#1}\\
+    \vspace{20mm}
+    MARIE SKŁODOWSKA-CURIE ACTIONS\\
+    \vspace{20mm}
+    \textbf{Innovative Training Networks (ITN)\\
+    Call: H2020-MSCA-ITN-2020}\\
+    \vspace{20mm}
+    PART B\\
+    \vspace{20mm}
+    (either delete this or place an image here)\\
+    \vspace{20mm}
+    ``\project''\\
+    \vspace{20mm}
+    This proposal is to be evaluated as:\\
+    ETN
+    \end{center}
+    \newpage
+}
+
+% For the commitment letters
+\usepackage{pdfpages}
+
+% Should come last
+\usepackage{hyperref}
+\hypersetup{
+   colorlinks,
+   menucolor=black,
+   linkcolor=black,
+   citecolor=black,
+   urlcolor=blue
+}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "master"
+%%% TeX-PDF-mode: t
+%%% End:
