@@ -1,10 +1,10 @@
 %%
-%% MSC DN (was ITN) Style
+%% MSC DN (was itn) Style
 %%
 %% Phil Garner, October 2019
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{itn}[MSC DN Proposal]
+\ProvidesPackage{msca-dn}[MSC DN Proposal]
 
 % Default values when options are not specified
 \usepackage{xspace}
@@ -31,6 +31,7 @@
 %  \footnotesize 9 pt, suitable for tables
 %  \scriptsize   8 pt, suitable for footnote references
 \usepackage[a4paper,margin=15mm]{geometry}
+\usepackage[bf,small]{titlesec}
 \usepackage{parskip}
 \usepackage{times}
 \usepackage[scaled]{helvet}
@@ -45,8 +46,8 @@
 \chead{\project\ --- DN}
 \lhead{}
 \rhead{}
-\cfoot{}
-\rfoot{Part B - Page \thepage\ of \pageref{LastPage}}
+\rfoot{}
+\cfoot{Part B - Page \thepage\ of \pageref{LastPage}}
 \setlength{\headheight}{15.2pt}
 
 % TOC needs to fit on one page
@@ -59,7 +60,7 @@
 \usepackage{array}
 %\usepackage{tabularx}
 \usepackage[table]{xcolor}
-\newenvironment{itntable}[2][\footnotesize]{% \footnotesize is 9pt, the minimum size as of 2021
+\newenvironment{msctable}[2][\footnotesize]{% \footnotesize is 9pt, the minimum size as of 2021
   \begin{center}
     #1 % Set the right size (and font maybe)
     \newcommand{\ra}{\raggedright\arraybackslash}
@@ -70,22 +71,22 @@
 }
 
 % Using a section command here prevents the widow / orphan thing with homemade command
-\newcommand{\itncaption}[1]{\subsubsection*{#1}}
+\newcommand{\msccaption}[1]{\subsubsection*{#1}}
 
 % Low level sectioning.  Could be \paragraph if space is short
-\newcommand{\itnsection}[1]{\subsubsection*{#1}}
+\newcommand{\mscsection}[1]{\subsubsection*{#1}}
 
 % Tables have coloured headings.  This ensures some consistency
-\colorlet{itncolor}{olive!30}
-\newcommand{\colorrow}{\rowcolor{itncolor}}
-\newcommand{\colorcell}{\cellcolor{itncolor}}
+\colorlet{msccolor}{olive!20}
+\newcommand{\colorrow}{\rowcolor{msccolor}}
+\newcommand{\colorcell}{\cellcolor{msccolor}}
 
 % Work package tables need to look the same
 \newcounter{wp}
 \newcounter{task}[wp]
-\newenvironment{itnwp}[3]{%
+\newenvironment{mscwp}[3]{%
     \refstepcounter{wp}
-    \begin{itntable}{|>{\ra}p{30mm}|>{\ra}p{140mm}|}
+    \begin{msctable}{|>{\ra}p{30mm}|>{\ra}p{140mm}|}
         \hline
         \colorcell\textbf{WP Number} &
         \parbox{140mm}{WP\arabic{wp}\hfill\textbf{#1}} \\
@@ -96,16 +97,16 @@
         \hline
 }{
         \hline
-    \end{itntable}
+    \end{msctable}
 }
-\newcommand{\itnwppar}[2]{\multicolumn{2}{|p{175mm}|}{%
+\newcommand{\mscwppar}[2]{\multicolumn{2}{|p{175mm}|}{%
     \textbf{#1:} #2}}
-\newcommand{\itnwptask}[2]{%
-    \itnwppar{\textit{\refstepcounter{task}Task \arabic{wp}.\arabic{task}. #1}}{#2}}
+\newcommand{\mscwptask}[2]{%
+    \mscwppar{\textit{\refstepcounter{task}Task \arabic{wp}.\arabic{task}. #1}}{#2}}
 
 % Similar for research projects
-\newenvironment{itnrp}{%
-    \begin{itntable}{|c|c|c|c|c|c|}
+\newenvironment{mscrp}{%
+    \begin{msctable}{|c|c|c|c|c|c|}
         \hline
         \colorrow
         \textbf{Fellow} &
@@ -117,9 +118,9 @@
         \hline
 }{
         \hline
-    \end{itntable}
+    \end{msctable}
 }
-\newcommand{\itnrppar}[2]{\multicolumn{6}{|p{175mm}|}{%
+\newcommand{\mscrppar}[2]{\multicolumn{6}{|p{175mm}|}{%
     \textbf{#1:} #2}}
 
 % Citations are in footnotes
@@ -130,21 +131,23 @@
 
 % Start and end pages
 \setlength{\fboxsep}{0pt}
-\newcommand{\itnpage}[1]{%
+\newcommand{\mscpage}[1]{%
     \begin{center}
-    \LARGE
+    \Large
     \textbf{#1}\\
-    \vspace{20mm}
+    \vspace{15mm}
     MARIE SKŁODOWSKA-CURIE ACTIONS\\
-    \vspace{20mm}
+    \vspace{15mm}
     \textbf{Doctoral Networks (DN)}\\
-    \textbf{Call: HORIZON-MSCA-DN-2021}\\
-    \vspace{20mm}
+    \textbf{Call: HORIZON-MSCA-2022-DN-01-01}\\
+    \vspace{15mm}
     PART B\\
-    \vspace{20mm}
-    (either delete this or place an image here)\\
-    \vspace{20mm}
+    \vspace{15mm}
+    \project\\
+    \vspace{40mm}
+    \normalsize
     \textbf{This proposal is to be evaluated as:}\\
+    \vspace{5mm}
     \textbf{DN}
     \end{center}
     \newpage

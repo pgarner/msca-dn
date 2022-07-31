@@ -1,15 +1,15 @@
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 
-% Generic ITN style
-\usepackage[ACRONYM,draft]{itn}
+% Generic DN style
+\usepackage[ACRONYM,draft]{msca-dn}
 
 % Common between all documents
 \input{common}
 
 \begin{document}
 
-\itnpage{START PAGE}
+\mscpage{START PAGE}
 {\small\tableofcontents} % Just for master.tex
 \note{Table of Contents should be one page, but bear in mind it's across two documents}
 
@@ -25,7 +25,7 @@
 % \include{ethics} No longer required
 \include{letters}
 
-\itnpage{END PAGE}
+\mscpage{END PAGE}
 
 \end{document}
 
