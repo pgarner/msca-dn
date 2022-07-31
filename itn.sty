@@ -1,10 +1,10 @@
 %%
-%% MSC ITN Style
+%% MSC DN (was ITN) Style
 %%
 %% Phil Garner, October 2019
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{itn}[2020/01/15 MSC ITN Proposal]
+\ProvidesPackage{itn}[MSC DN Proposal]
 
 % Default values when options are not specified
 \usepackage{xspace}
@@ -26,10 +26,15 @@
 }
 \ProcessOptions\relax
 
-% Minimum font size should be 11pt in the document header
+% Minimum font size should be 11pt in the document header.  This yields
+%  \normalsize   10.95 pt
+%  \footnotesize 9 pt, suitable for tables
+%  \scriptsize   8 pt, suitable for footnote references
 \usepackage[a4paper,margin=15mm]{geometry}
 \usepackage{parskip}
 \usepackage{times}
+\usepackage[scaled]{helvet}
+\usepackage[scaled=0.89]{couriers} % 8/9 = 0.8888
 \usepackage{paralist} % For compactenum
 \usepackage{enumitem} % To change the enumeration label
 
@@ -37,7 +42,7 @@
 \usepackage{lastpage}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\chead{\project\ - ETN}
+\chead{\project\ --- DN}
 \lhead{}
 \rhead{}
 \cfoot{}
@@ -50,13 +55,12 @@
 % The \checkmark is in here
 \usepackage{amssymb}
 
-% For tables; these are not floats, they are more just tabular environments.
+% For tables; these are not floats, they are more just tabular environments.  With [11pt] in the documentstyle, \scriptsize is 8pt
 \usepackage{array}
+%\usepackage{tabularx}
 \usepackage[table]{xcolor}
-\newenvironment{itntable}[2][\footnotesize]{%
+\newenvironment{itntable}[2][\footnotesize]{% \footnotesize is 9pt, the minimum size as of 2021
   \begin{center}
-    % With [11pt] in the documentstyle, \scriptsize is 8pt
-    % \footnotesize is 9pt, which is readable.  If a table is too big then put [\scriptsize] (i.e., 8pt) as optional argument
     #1 % Set the right size (and font maybe)
     \newcommand{\ra}{\raggedright\arraybackslash}
     \begin{tabular}{#2}
@@ -119,10 +123,13 @@
     \textbf{#1:} #2}}
 
 % Citations are in footnotes
+%\usepackage[style=footnote-dw]{biblatex}
 \usepackage[style=verbose]{biblatex}
 \let\cite\footcite
+\bibfont{\scriptsize}
 
 % Start and end pages
+\setlength{\fboxsep}{0pt}
 \newcommand{\itnpage}[1]{%
     \begin{center}
     \LARGE
@@ -130,17 +137,15 @@
     \vspace{20mm}
     MARIE SKŁODOWSKA-CURIE ACTIONS\\
     \vspace{20mm}
-    \textbf{Innovative Training Networks (ITN)\\
-    Call: H2020-MSCA-ITN-2020}\\
+    \textbf{Doctoral Networks (DN)}\\
+    \textbf{Call: HORIZON-MSCA-DN-2021}\\
     \vspace{20mm}
     PART B\\
     \vspace{20mm}
     (either delete this or place an image here)\\
     \vspace{20mm}
-    ``\project''\\
-    \vspace{20mm}
-    This proposal is to be evaluated as:\\
-    ETN
+    \textbf{This proposal is to be evaluated as:}\\
+    \textbf{DN}
     \end{center}
     \newpage
 }
