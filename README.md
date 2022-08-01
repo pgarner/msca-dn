@@ -9,7 +9,8 @@ There are three documents here:
 
 There are couple of macros for adding comments:
 * `\note{A note}`
-* `\todo{Who}{What} (also appears in table of contents)`
+* `\todo{Who}{What}` (also appears in table of contents)
+
 To get rid of these, just remove the option `draft` from `\usepackage[draft]{msca-dn}`
 
 To set the width of tables, start with the fact that we're on A4 paper with 15mm margins, so 210-30 = 180mm
