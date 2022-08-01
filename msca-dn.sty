@@ -52,7 +52,8 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% TOC needs to fit on one page
+% TOC needs to fit on one page with in-y'r-face title
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
 \setcounter{tocdepth}{3}
 
 % The \checkmark is in here
@@ -60,7 +61,6 @@
 
 % For tables; these are not floats, they are more just tabular environments.  With [11pt] in the documentstyle, \scriptsize is 8pt
 \usepackage{array}
-%\usepackage{tabularx}
 \usepackage[table]{xcolor}
 \newenvironment{msctable}[2][\footnotesize]{% \footnotesize is 9pt, the minimum size as of 2021
   \begin{center}
